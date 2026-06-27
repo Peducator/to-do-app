@@ -34,4 +34,29 @@ const createnew = async (req, res) => {
   res.json(newtodo);
 };
 
-module.exports = { getAll, createnew };
+const updatetodo = async (req, res) => {
+  const { name, description } = req.body;
+  const update = await prisma.task.update({
+    where: {
+      id: parseInt(req.params.id)
+    },
+    data: {
+      name,
+      description
+    }
+  });
+  res.json(update);
+};
+
+const deletetodo = async (req, res) => {
+const { name, description } = req.body;
+  const update = await prisma.task.delete({
+    where:{
+      id: parseInt(req.params.id)
+    }
+  });
+  res.json({"message": "deleted successfully"});
+};
+
+
+module.exports = { getAll, createnew ,updatetodo, deletetodo};
