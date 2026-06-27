@@ -4,6 +4,8 @@ const PORT = process.env.PORT || 3000;
 const Authroutes = require('./src/routes/auth.routes');
 const Listsroutes = require('./src/routes/lists.routes');
 
+require('dotenv').config();
+
 app.listen(PORT, () => {
     console.log('server is running at port ' + PORT);
 });

@@ -1,3 +1,6 @@
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
+
 const getAll = async (req, res) => {
   const todos = await prisma.task.findMany({
     where: {
