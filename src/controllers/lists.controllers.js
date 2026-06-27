@@ -22,6 +22,9 @@ const getAll = async (req, res) => {
 const createnew = async (req, res) => {
   try {
     const { name, description } = req.body;
+    if (!name || !description) {
+      return res.status(400).json({ message: 'Name and description are required' });
+    }
     const newtodo = await prisma.task.create({
       data: { name, description, user: { connect: { username: req.user.username } } }
     });
@@ -34,6 +37,9 @@ const createnew = async (req, res) => {
 const updatetodo = async (req, res) => {
   try {
     const { name, description } = req.body;
+    if (!name || !description) {
+      return res.status(400).json({ message: 'Name and description are required' });
+    }
     const update = await prisma.task.update({
       where: { id: parseInt(req.params.id) },
       data: { name, description }
