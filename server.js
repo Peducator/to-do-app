@@ -5,6 +5,7 @@ const Authroutes = require('./src/routes/auth.routes');
 const Listsroutes = require('./src/routes/lists.routes');
 
 require('dotenv').config();
+app.use(express.json());
 
 app.listen(PORT, () => {
     console.log('server is running at port ' + PORT);

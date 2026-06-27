@@ -22,4 +22,16 @@ const getAll = async (req, res) => {
   res.json(todos);
 };
 
-module.exports = { getAll };
+const createnew = async (req, res) => {
+  const { name, description } = req.body;
+  const newtodo = await prisma.task.create({
+    data: {
+      name,
+      description,
+      user: { connect: { username: req.user.username }}
+    }
+  });
+  res.json(newtodo);
+};
+
+module.exports = { getAll, createnew };
